@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>手写数字生成</title>
+    <style>
+        #preview { 
+            width: 280px; 
+            height: 280px;
+            border: 2px dashed #ccc;
+            image-rendering: pixelated; /* 保持图像锐利 */
+        }
+    </style>
+</head>
+<body>
+    <h1>生成手写数字 (0-9)</h1>
+    <input type="number" id="digit" min="0" max="9" value="5" step="1">
+    <button onclick="generate()">生成</button>
+    <div id="preview">
+        <img id="result" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+    </div>
+
+    <script>
+        async function generate() {
+            const digit = parseInt(document.getElementById('digit').value);
+            const resultImg = document.getElementById('result');
+            
+            try {
+                // 显示加载状态
+                resultImg.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+                
+                const response = await fetch('http://localhost:5000/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ digit: digit })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || '未知错误');
+                }
+
+                const blob = await response.blob();
+                resultImg.src = URL.createObjectURL(blob);
+            } catch (error) {
+                alert(`错误: ${error.message}`);
+                console.error(error);
+            }
+        }
+        
+        // 初始化生成
+        generate();
+    </script>
+</body>
+</html>

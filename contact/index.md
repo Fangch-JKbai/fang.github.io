@@ -14,8 +14,8 @@ nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 {%
   include button.html
   type="email"
-  text="jane@smith.com"
-  link="jane@smith.com"
+  text="dengzhaohong@jiangnan.edu.cn"
+  link="dengzhaohong@jiangnan.edu.cn"
 %}
 {%
   include button.html
@@ -27,7 +27,7 @@ nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   include button.html
   type="address"
   tooltip="Our location on Google Maps for easy navigation"
-  link="https://www.google.com/maps"
+  link="https://www.google.com/maps/place/Jiangnan+University/@31.4812563,120.2652977,15z/data=!4m6!3m5!1s0x35b384344d95ebd5:0xbc3734bbf9b13ffd!8m2!3d31.482675!4d120.277464!16s%2Fm%2F055081y?entry=ttu&g_ep=EgoyMDI1MDMwMi4wIKXMDSoASAFQAw%3D%3D"
 %}
 
 {% include section.html %}
